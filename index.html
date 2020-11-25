@@ -32,7 +32,7 @@
           <li class="movie" v-for="movie in movies">
             <p>Title: {{ movie.title }}</p>
             <p>Original title: {{ movie.original_title }}</p>
-            <p>Language: <img :src="getFlagSrc(movie.original_language)" alt="Other language"></p> <!-- fix: Flags -->
+            <p>Language: <img :src="getFlagSrc(movie.original_language)" alt="Other language"></p>
             <div>
               <i class="fas fa-star"
                 v-for="n in setStarRating(movie.vote_average)"></i>
