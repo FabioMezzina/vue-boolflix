@@ -5,10 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Boolfix</title>
   <link rel="stylesheet" href="./css/style.css">
+  <!-- Vue.js -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 <body>
-  
+  <!-- BOOLFIX APP -->
+  <div id="app">
+    <!-- Search bar section -->
+    <div class="search-bar">
+      <input type="text" placeholder="Insert a title..."
+            v-model="searchInput"
+            @keyup.enter="search"
+      >
+      <button @click="search">Search</button>
+    </div>
+
+    <!-- Main content - show search results -->
+    <main class="show-results">
+      <!-- Movies -->
+      <div class="movies-section" v-show="movies.length > 0">
+        <ul class="movies list">
+          <li class="movie" v-for="movie in movies">
+            <p>{{ movie.title }}</p>
+            <p>{{ movie.original_title }}</p>
+            <p>{{movie.original_language}}</p> <!-- fix: Flags -->
+            <div>{{ movie.vote_average }}</div> <!-- fix: Stars -->
+          </li>
+        </ul>
+      </div>
+      <!-- Series -->
+      <div class="series-section" v-show="series.length > 0">
+        <ul class="series list">
+          <li class="serie" v-for="serie in series">
+            <p>{{ serie.name }}</p>
+            <p>{{ serie.original_name }}</p>
+            <p>{{ serie.original_language }}</p> <!-- fix: Flags -->
+            <div>{{ serie.vote_average }}</div> <!-- fix: Stars -->
+          </li>
+        </ul>
+      </div>
+    </main>
+  </div>
+
   <!-- JS -->
+  <!-- Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- Main script -->
   <script src="./js/main.js"></script>
 </body>
 </html>

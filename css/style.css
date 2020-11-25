@@ -3,3 +3,28 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+/* UTILITY */
+.list {
+  list-style: none;
+}
+
+/* BOOLFIX APP */
+
+/* Search bar section */
+.search-bar {
+  margin-bottom: 25px;
+}
+/* Main content - show search results */
+.list li {
+  margin-bottom: 20px;
+}
+
+/* Movies */
+.movies-section,
+.series-section {
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+/* Series */
