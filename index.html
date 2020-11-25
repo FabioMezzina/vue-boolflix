@@ -32,7 +32,7 @@
           <li class="movie" v-for="movie in movies">
             <p>Title: {{ movie.title }}</p>
             <p>Original title: {{ movie.original_title }}</p>
-            <p>Language: {{movie.original_language}}</p> <!-- fix: Flags -->
+            <p>Language: <img :src="getFlagSrc(movie.original_language)" alt="Other language"></p> <!-- fix: Flags -->
             <div>
               <i class="fas fa-star"
                 v-for="n in setStarRating(movie.vote_average)"></i>
@@ -49,7 +49,7 @@
           <li class="serie" v-for="serie in series">
             <p>Name: {{ serie.name }}</p>
             <p>Original name: {{ serie.original_name }}</p>
-            <p>Language: {{ serie.original_language }}</p> <!-- fix: Flags -->
+            <p>Language: <img :src="getFlagSrc(serie.original_language)" alt="Other language"></p>
             <div>
               <i class="fas fa-star"
               v-for="n in setStarRating(serie.vote_average)"></i>

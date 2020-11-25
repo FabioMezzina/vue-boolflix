@@ -9,6 +9,10 @@
   list-style: none;
 }
 
+.list img {
+  max-height: 1em;
+}
+
 h2 {
   margin-bottom: 15px;
 }

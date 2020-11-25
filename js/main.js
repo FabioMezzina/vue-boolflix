@@ -44,6 +44,9 @@ const app = new Vue({
     },
     setStarRating(numRating) {
       return Math.ceil(numRating / 2);
+    },
+    getFlagSrc(lang) {
+      return (lang === 'it' || lang === 'en') ? `./img/${lang}.png` : '' ;
     }
   } // <- End Methods
 });
