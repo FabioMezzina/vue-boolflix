@@ -9,6 +9,10 @@
   list-style: none;
 }
 
+h2 {
+  margin-bottom: 15px;
+}
+
 /* BOOLFIX APP */
 
 /* Search bar section */

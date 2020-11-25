@@ -4,7 +4,7 @@ const app = new Vue({
     searchInput: '',
     movies: [],
     series: [],
-  },
+  }, // <- End Data
   methods: {
     search() {
       this.getMovies();
@@ -42,5 +42,8 @@ const app = new Vue({
             });
       }
     },
-  }
+    setStarRating(numRating) {
+      return Math.ceil(numRating / 2);
+    }
+  } // <- End Methods
 });
