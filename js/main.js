@@ -16,6 +16,7 @@ const app = new Vue({
                 params: {
                   api_key: 'c7984b175d921dd492707f69a01be0da',
                   query: this.searchInput,
+                  language: 'it-IT',
                 }
               })
             .then(result => {
@@ -32,6 +33,7 @@ const app = new Vue({
                 params: {
                   api_key: 'c7984b175d921dd492707f69a01be0da',
                   query: this.searchInput,
+                  language: 'it-IT',
                 }
               })
             .then(result => {
