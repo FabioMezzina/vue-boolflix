@@ -20,6 +20,12 @@
             v-model="searchInput"
             @keyup.enter="search"
       >
+      <select name="languages" id="languages" v-model="searchLanguage">
+        <option value="it-IT">Italiano</option>
+        <option value="en-EN">English</option>
+        <option value="es-ES">Español</option>
+        <option value="de-DE">Deutsche</option>
+      </select>
       <button @click="search">Search</button>
     </div>
 
@@ -32,7 +38,12 @@
           <li class="movie" v-for="movie in movies">
             <p>Title: {{ movie.title }}</p>
             <p>Original title: {{ movie.original_title }}</p>
-            <p>Language: <img :src="getFlagSrc(movie.original_language)" alt="Other language"></p>
+            <p>
+              Language: 
+              <img :src="`./img/${movie.original_language}.png`"
+                  :alt="movie.original_language"
+              >
+            </p>
             <div>
               <i class="fas fa-star"
                 v-for="n in setStarRating(movie.vote_average)"></i>
@@ -49,7 +60,12 @@
           <li class="serie" v-for="serie in series">
             <p>Name: {{ serie.name }}</p>
             <p>Original name: {{ serie.original_name }}</p>
-            <p>Language: <img :src="getFlagSrc(serie.original_language)" alt="Other language"></p>
+            <p>
+              Language: 
+              <img :src="`./img/${serie.original_language}.png`"
+                  :alt="serie.original_language"
+              >
+            </p>
             <div>
               <i class="fas fa-star"
               v-for="n in setStarRating(serie.vote_average)"></i>

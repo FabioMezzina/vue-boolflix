@@ -4,11 +4,13 @@ const app = new Vue({
     searchInput: '',
     movies: [],
     series: [],
+    searchLanguage: 'it-IT',
   }, // <- End Data
   methods: {
     search() {
       this.getMovies();
       this.getSeries();
+      this.searchInput = '';
     },
     getMovies() {
       if (this.searchInput) {
@@ -16,7 +18,7 @@ const app = new Vue({
                 params: {
                   api_key: 'c7984b175d921dd492707f69a01be0da',
                   query: this.searchInput,
-                  language: 'it-IT',
+                  language: this.searchLanguage,
                 }
               })
             .then(result => {
@@ -33,7 +35,7 @@ const app = new Vue({
                 params: {
                   api_key: 'c7984b175d921dd492707f69a01be0da',
                   query: this.searchInput,
-                  language: 'it-IT',
+                  language: this.searchLanguage,
                 }
               })
             .then(result => {
@@ -47,8 +49,5 @@ const app = new Vue({
     setStarRating(numRating) {
       return Math.ceil(numRating / 2);
     },
-    getFlagSrc(lang) {
-      return (lang === 'it' || lang === 'en') ? `./img/${lang}.png` : '' ;
-    }
   } // <- End Methods
 });
