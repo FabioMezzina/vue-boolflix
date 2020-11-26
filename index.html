@@ -6,6 +6,8 @@
   <title>Boolfix</title>
   <!-- Font Awesome-->
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
   <!-- Styles -->
   <link rel="stylesheet" href="./css/style.css">
   <!-- Vue.js -->
@@ -52,9 +54,9 @@
                   v-else
               >
             </div>
-            <p>{{ movie.title }}</p>
-            <p>{{ movie.original_title }}</p>
-            <div class="language">
+            <p class="mb10">{{ movie.title }}</p>
+            <p class="mb10">{{ movie.original_title }}</p>
+            <div class="language mb10">
               <img :src="`./img/${movie.original_language}.png`"
                   :alt="movie.original_language"
               >
@@ -64,6 +66,11 @@
                 v-for="n in setStarRating(movie.vote_average)"></i>
               <i class="far fa-star"
                 v-for="n in (5 - setStarRating(movie.vote_average))"></i>
+            </div>
+            <div class="description" v-if="movie.overview">
+              <p>
+                {{ movie.overview }}
+              </p>
             </div>
           </li>
         </ul>
@@ -84,9 +91,9 @@
                   v-else
               >
             </div>
-            <p>{{ serie.name }}</p>
-            <p>{{ serie.original_name }}</p>
-            <div class="language">
+            <p class="mb10">{{ serie.name }}</p>
+            <p class="mb10">{{ serie.original_name }}</p>
+            <div class="language mb10">
               <img :src="`./img/${serie.original_language}.png`"
                   :alt="serie.original_language"
               >
@@ -96,6 +103,11 @@
               v-for="n in setStarRating(serie.vote_average)"></i>
               <i class="far fa-star"
                 v-for="n in (5 - setStarRating(serie.vote_average))"></i>
+            </div>
+            <div class="description" v-if="serie.overview">
+              <p>
+                {{ serie.overview }}
+              </p>
             </div>
           </li>
         </ul>

@@ -2,11 +2,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: #1d3559;
 }
 
 body {
   height: 100vh;
-  background-color: #cecece;
+  font-family: 'Lato', sans-serif;
+  
   overflow: hidden;
 }
 
@@ -32,6 +34,10 @@ h2 {
   text-align: center;
 }
 
+.mb10 {
+  margin-bottom: 10px;
+}
+
 .mb75 {
   margin-bottom: 75px;
 }
@@ -42,9 +48,8 @@ h2 {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  max-width: 85%;
   height: 100%;
-  background-color: #aaa;
+  background: linear-gradient(45deg, rgba(239,101,55, .7) 50%, rgba(254,57,84,.7) 100%);
 }
 
 /* HEADER - Search bar section */
@@ -54,12 +59,26 @@ header.search-bar {
   align-items: center;
   position: absolute;
   top: 0;
-  left: 0;
-  padding: 0 50px;
-  flex-basis: 75px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 75px;
   min-height: 75px;
-  width: 100%;
-  background-color: rgba(221, 255, 255, .5);
+  width: 90%;
+  color: rgba(249, 249, 249, .4);
+  background-color: rgba(249, 249, 249, .4);
+  border-bottom-left-radius: 70px;
+  border-bottom-right-radius: 70px;
+  transition: .2s;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .6);
+  z-index: 1;
+}
+
+header.search-bar:hover {
+  background-color: rgba(249, 249, 249, .7);
+}
+
+.logo {
+  color: #1d3559;
 }
 
 .search select {
@@ -70,6 +89,12 @@ header.search-bar {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   appearance: none;
+  background-color: rgba(255, 255, 255, .6);
+}
+
+.search select option {
+  color: #1d3559;
+  background-color: rgba(249, 249, 249);
 }
 
 .search-input {
@@ -78,34 +103,25 @@ header.search-bar {
   padding: 5px 15px;
   border: 0;
   border-radius: 15px;
+  background-color: rgba(255, 255, 255, .6);
 }
 
+.search-input::placeholder {
+  color: #1d3559;
+}
 
 /* MAIN CONTENT - show search results */
 main.show-results {
   flex-grow: 1;
   padding: 75px 0;
-  background-color: #aaf;
   overflow-y: auto;
-}
-
-/****************************************************************
-** Qui ci metterò una barra di divisione come pseudoelemento!! **
-****************************************************************/
-main.show-results > div:not(:last-of-type)::after {
-  display: block;
-  margin: 50px auto 0;
-  width: 85%;
-  height: 2px;
-  content: '';
-  background-color: green;
 }
 
 /* Movies & Series */
 .movies-section,
 .series-section {
   padding: 25px 50px;
-  /* margin-bottom: 75px; */
+  text-align: center;
 }
 
 .movies,
@@ -117,11 +133,27 @@ main.show-results > div:not(:last-of-type)::after {
 
 .movie,
 .serie {
+  position: relative;
   margin: 20px 20px;
-  padding: 15px;
+  padding: 20px;
   max-width: 220px;
+  background-color: rgba(249, 249, 249, .8);
+  border-radius: 15px;
   cursor: pointer;
-  border: 1px solid black; /*debug*/
+  transition: .3s;
+  overflow: hidden;
+}
+
+.movie:hover,
+.serie:hover {
+  filter: drop-shadow(3px 3px 4px rgba(0,0,0,.6));
+  background-color: rgba(249, 249, 249, 1);
+  transform: scale(1.1);
+}
+
+.movie:hover .description,
+.serie:hover .description {
+  left: 0;
 }
 
 .poster {
@@ -129,20 +161,52 @@ main.show-results > div:not(:last-of-type)::after {
   min-height: 320px;
 }
 
+.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  padding: 15px 15px 30px;
+  width: 100%;
+  height: 100%;
+  font-size: .85rem;
+  background-color: rgba(0,0,0,.9);
+  border-radius: 15px;
+  transition: .3s;
+}
+
+.description p {
+  max-height: 90%;
+  color: rgba(249, 249, 249, .6);
+  overflow: hidden;
+}
+
+.description::after {
+  display: block;
+  height: 25px;
+  content: 'Click to read more...';
+  color: rgba(249, 249, 249, .4);
+}
 
 /* FOOTER - Filters */
 footer.filters {
   position: absolute;
   bottom: 0;
-  left: 0;
-  flex-basis: 75px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 75px;
   min-height: 75px;
-  width: 100%;
-  background-color: #fdf;
-  opacity: 0.5;
-  transition: .5s;
+  width: 90%;
+  background-color: rgba(249, 249, 249, .4);
+  border-top-left-radius: 70px;
+  border-top-right-radius: 70px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .6);
+  transition: .2s;
+  z-index: 1;
 }
 
 footer.filters:hover {
-  opacity: 1;
+  background-color: rgba(249, 249, 249, .8);
 }
