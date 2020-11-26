@@ -15,7 +15,7 @@
   <!-- BOOLFIX APP -->
   <div id="app">
     <!-- Search bar section -->
-    <div class="search-bar">
+    <header class="search-bar">
       <input type="text" placeholder="Insert a title..."
             v-model="searchInput"
             @keyup.enter="search"
@@ -27,7 +27,7 @@
         <option value="de-DE">Deutsche</option>
       </select>
       <button @click="search">Search</button>
-    </div>
+    </header>
 
     <!-- Main content - show search results -->
     <main class="show-results">
@@ -36,14 +36,23 @@
         <h2>- Movies -</h2>
         <ul class="movies list">
           <li class="movie" v-for="movie in movies">
-            <p>Title: {{ movie.title }}</p>
-            <p>Original title: {{ movie.original_title }}</p>
-            <p>
-              Language: 
+            <div class="poster">
+              <img :src="setPosterPath(movie.poster_path)"
+                  :alt="movie.title"
+                  v-if="movie.poster_path"
+              >
+              <img src="https://www.altavod.com/assets/images/poster-placeholder.png"
+                  alt="poster not found"
+                  v-else
+              >
+            </div>
+            <p>{{ movie.title }}</p>
+            <p>{{ movie.original_title }}</p>
+            <div class="language">
               <img :src="`./img/${movie.original_language}.png`"
                   :alt="movie.original_language"
               >
-            </p>
+            </div>
             <div>
               <i class="fas fa-star"
                 v-for="n in setStarRating(movie.vote_average)"></i>
@@ -53,19 +62,29 @@
           </li>
         </ul>
       </div>
+      
       <!-- Series -->
       <div class="series-section" v-show="series.length > 0">
         <h2>- TV Series -</h2>
         <ul class="series list">
           <li class="serie" v-for="serie in series">
-            <p>Name: {{ serie.name }}</p>
-            <p>Original name: {{ serie.original_name }}</p>
-            <p>
-              Language: 
+            <div class="poster">
+              <img :src="setPosterPath(serie.poster_path)"
+                  :alt="serie.title"
+                  v-if="serie.poster_path"
+              >
+              <img src="https://www.altavod.com/assets/images/poster-placeholder.png"
+                  alt="poster not found"
+                  v-else
+              >
+            </div>
+            <p>{{ serie.name }}</p>
+            <p>{{ serie.original_name }}</p>
+            <div class="language">
               <img :src="`./img/${serie.original_language}.png`"
                   :alt="serie.original_language"
               >
-            </p>
+            </div>
             <div>
               <i class="fas fa-star"
               v-for="n in setStarRating(serie.vote_average)"></i>
@@ -76,7 +95,8 @@
         </ul>
       </div>
     </main>
-  </div>
+
+  </div> <!-- End App -->
 
   <!-- JS -->
   <!-- Axios -->
