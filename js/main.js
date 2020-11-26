@@ -13,7 +13,6 @@ const app = new Vue({
     search() {
       this.getMovies();
       this.getSeries();
-      this.searchInput = '';
     },
     /**
      * Search for movies and populate movies array
@@ -33,7 +32,9 @@ const app = new Vue({
             .catch(error => {
               console.log(error);
             });
+            return null;
       }
+      this.movies = [];
     },
     /**
      * Search for tv series and populate series array
@@ -53,7 +54,9 @@ const app = new Vue({
             .catch(error => {
               console.log(error);
             });
+            return null;
       }
+      this.series = [];
     },
     /**
      * Convert and return film rating, from 1-10 to 1-5

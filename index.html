@@ -14,22 +14,28 @@
 <body>
   <!-- BOOLFIX APP -->
   <div id="app">
-    <!-- Search bar section -->
+    <!-- HEADER - Search bar section -->
     <header class="search-bar">
-      <input type="text" placeholder="Insert a title..."
-            v-model="searchInput"
-            @keyup.enter="search"
-      >
-      <select name="languages" id="languages" v-model="searchLanguage">
-        <option value="it-IT">Italiano</option>
-        <option value="en-EN">English</option>
-        <option value="es-ES">Español</option>
-        <option value="de-DE">Deutsche</option>
-      </select>
-      <button @click="search">Search</button>
+      <div class="logo">
+        LOGO
+      </div>
+      <div class="search">
+        <select name="languages" id="languages" v-model="searchLanguage">
+          <option value="it-IT">Italiano</option>
+          <option value="en-EN">English</option>
+          <option value="es-ES">Español</option>
+          <option value="de-DE">Deutsche</option>
+        </select>
+        <input type="text" placeholder="Insert a title..."
+              class="search-input"
+              v-model="searchInput"
+              @keyup="search"
+        >
+      </div>
+      <!-- <button @click="search">Search</button> -->
     </header>
 
-    <!-- Main content - show search results -->
+    <!-- MAIN CONTENT - show search results -->
     <main class="show-results">
       <!-- Movies -->
       <div class="movies-section" v-show="movies.length > 0">
@@ -62,9 +68,9 @@
           </li>
         </ul>
       </div>
-      
+
       <!-- Series -->
-      <div class="series-section" v-show="series.length > 0">
+      <div class="series-section mb75" v-show="series.length > 0">
         <h2>- TV Series -</h2>
         <ul class="series list">
           <li class="serie" v-for="serie in series">
@@ -95,6 +101,11 @@
         </ul>
       </div>
     </main>
+
+    <!-- FOOTER - filters section -->
+    <footer class="filters">
+
+    </footer>
 
   </div> <!-- End App -->
 

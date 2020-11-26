@@ -4,35 +4,145 @@
   box-sizing: border-box;
 }
 
+body {
+  height: 100vh;
+  background-color: #cecece;
+  overflow: hidden;
+}
+
 /* UTILITY */
 .list {
   list-style: none;
+}
+
+.list li {
+  margin-bottom: 20px;
 }
 
 .list .language img {
   max-height: 1em;
 }
 
+.poster img {
+  max-width: 100%;
+}
+
 h2 {
   margin-bottom: 15px;
+  text-align: center;
+}
+
+.mb75 {
+  margin-bottom: 75px;
 }
 
 /* BOOLFIX APP */
-
-/* Search bar section */
-.search-bar {
-  margin-bottom: 25px;
+#app {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 85%;
+  height: 100%;
+  background-color: #aaa;
 }
-/* Main content - show search results */
-.list li {
-  margin-bottom: 20px;
+
+/* HEADER - Search bar section */
+header.search-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 50px;
+  flex-basis: 75px;
+  min-height: 75px;
+  width: 100%;
+  background-color: rgba(221, 255, 255, .5);
 }
 
-/* Movies */
+.search select {
+  margin-right: 15px;
+  padding: 5px 10px;
+  height: 30px;
+  border: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  appearance: none;
+}
+
+.search-input {
+  height: 30px;
+  width: 300px;
+  padding: 5px 15px;
+  border: 0;
+  border-radius: 15px;
+}
+
+
+/* MAIN CONTENT - show search results */
+main.show-results {
+  flex-grow: 1;
+  padding: 75px 0;
+  background-color: #aaf;
+  overflow-y: auto;
+}
+
+/****************************************************************
+** Qui ci metterò una barra di divisione come pseudoelemento!! **
+****************************************************************/
+main.show-results > div:not(:last-of-type)::after {
+  display: block;
+  margin: 50px auto 0;
+  width: 85%;
+  height: 2px;
+  content: '';
+  background-color: green;
+}
+
+/* Movies & Series */
 .movies-section,
 .series-section {
-  padding: 20px;
-  margin-bottom: 25px;
+  padding: 25px 50px;
+  /* margin-bottom: 75px; */
 }
 
-/* Series */
+.movies,
+.series {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.movie,
+.serie {
+  margin: 20px 20px;
+  padding: 15px;
+  max-width: 220px;
+  cursor: pointer;
+  border: 1px solid black; /*debug*/
+}
+
+.poster {
+  margin: 0 auto;
+  min-height: 320px;
+}
+
+
+/* FOOTER - Filters */
+footer.filters {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  flex-basis: 75px;
+  min-height: 75px;
+  width: 100%;
+  background-color: #fdf;
+  opacity: 0.5;
+  transition: .5s;
+}
+
+footer.filters:hover {
+  opacity: 1;
+}
