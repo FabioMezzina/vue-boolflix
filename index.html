@@ -41,7 +41,7 @@
     <main class="show-results">
       <!-- Movies -->
       <div class="movies-section" v-show="movies.length > 0">
-        <h2>- Movies -</h2>
+        <h2 class="mb20">- Movies -</h2>
         <ul class="movies list">
           <li class="movie" v-for="movie in movies">
             <div class="poster">
@@ -67,7 +67,9 @@
               <i class="far fa-star"
                 v-for="n in (5 - setStarRating(movie.vote_average))"></i>
             </div>
-            <div class="description" v-if="movie.overview">
+            <div class="description" v-if="movie.overview"
+                @click="showOverlay(movie)"
+            >
               <p>
                 {{ movie.overview }}
               </p>
@@ -78,7 +80,7 @@
 
       <!-- Series -->
       <div class="series-section mb75" v-show="series.length > 0">
-        <h2>- TV Series -</h2>
+        <h2 class="mb20">- TV Series -</h2>
         <ul class="series list">
           <li class="serie" v-for="serie in series">
             <div class="poster">
@@ -104,7 +106,9 @@
               <i class="far fa-star"
                 v-for="n in (5 - setStarRating(serie.vote_average))"></i>
             </div>
-            <div class="description" v-if="serie.overview">
+            <div class="description" v-if="serie.overview"
+                @click="showOverlay(serie)" 
+            >
               <p>
                 {{ serie.overview }}
               </p>
@@ -118,6 +122,35 @@
     <footer class="filters">
 
     </footer>
+
+    <!-- Overlay containing a more accurate and visible description -->
+    <div class="description-overlay" v-if="overlayStatus"
+        @click="overlayStatus = false"
+    >
+      <div class="description-full-screen">
+        <div class="img-wrapper">
+          <img :src="`https://image.tmdb.org/t/p/w342${overlay.poster_path}`"
+              alt=""
+              v-if="overlay.poster_path"
+          >
+          <img src="https://www.altavod.com/assets/images/poster-placeholder.png"
+          alt="poster not found"
+          v-else
+          >
+        </div>
+        <div class="description-wrapper">
+          <p class="overlay.overview mb10">
+            {{ overlay.overview }}
+          </p>
+          <p class="mb10">
+            Original language: {{ overlay.original_language }}
+          </p>
+          <p class="mb10">
+            Average rating: {{ overlay.vote_average }} / 10
+          </p>
+        </div>
+      </div>
+    </div>
 
   </div> <!-- End App -->
 

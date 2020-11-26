@@ -5,6 +5,14 @@ const app = new Vue({
     movies: [],
     series: [],
     searchLanguage: 'it-IT',
+    overlayStatus: false,
+    overlay: {
+      poster_path: '',
+      overview: '',
+      original_language: '',
+      vote_average: 0,
+      genre_ids: [],
+    },
   }, // <- End Data
   methods: {
     /**
@@ -71,6 +79,16 @@ const app = new Vue({
      */
     setPosterPath(path) {
       return `https://image.tmdb.org/t/p/w342/${path}`;
-    }
+    },
+    showOverlay(film) {
+      this.overlayStatus = true;
+      this.overlay = {
+        poster_path: film.poster_path,
+        overview: film.overview,
+        original_language: film.original_language,
+        vote_average: film.vote_average,
+        genre_ids: [...film.genre_ids],
+      }
+    },
   } // <- End Methods
 });
