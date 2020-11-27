@@ -19,7 +19,7 @@
     <!-- HEADER - Search bar section -->
     <header class="search-bar">
       <div class="logo">
-        LOGO
+        <a href="./index.html"><img src="https://fontmeme.com/permalink/201127/65dfc46f6c5562c6cee0eb0369f456ad.png" alt="netflix-font" border="0"></a>
       </div>
       <div class="search">
         <select name="languages" id="languages" v-model="searchLanguage"
@@ -36,24 +36,25 @@
               @keyup="search"
         >
       </div>
-      <!-- <button @click="search">Search</button> -->
     </header>
 
     <!-- MAIN CONTENT - show search results -->
     <main class="show-results">
       <!-- Movies -->
       <div class="movies-section" v-show="movies.length > 0">
-        <h2 class="mb10">- Movies -</h2>
-        <nav class="filter-genres">
-          <a href="#"  class="btn-genre"
-            :class="{selected: movieFilterClass[index]}"
-            v-for="(genre, index) in filteredMovieGenreList"
-            @click.prevent="toggleGenre(genre.id, 'movie', index)"
-          >
-            {{ genre.name }}
-          </a>
-        </nav>
-        <ul class="movies list">
+        <div class="category container mb20">
+          <h2 class="mb10">Movies</h2>
+          <nav class="filter-genres">
+            <a href="#"  class="btn-genre"
+              :class="{selected: movieFilterClass[index]}"
+              v-for="(genre, index) in filteredMovieGenreList"
+              @click.prevent="toggleGenre(genre.id, 'movie', index)"
+            >
+              {{ genre.name }}
+            </a>
+          </nav>
+        </div>
+        <ul class="movies list container">
           <li class="movie" v-for="movie in movies"
           v-show="hasGenresSelected(movie.genre_ids, 'movie')"
           >
@@ -88,17 +89,19 @@
 
       <!-- Series -->
       <div class="series-section" v-show="series.length > 0">
-        <h2 class="mb10">- TV Series -</h2>
-        <nav class="filter-genres">
-          <a href="#" class="btn-genre"
-          :class="{selected: serieFilterClass[index]}"
-          v-for="(genre, index) in filteredSerieGenreList"
-          @click.prevent="toggleGenre(genre.id, 'serie', index)"
-        >
-          {{ genre.name }}
-        </a>
-        </nav>
-        <ul class="series list">
+        <div class="category container mb20">
+          <h2 class="mb10">- TV Series -</h2>
+          <nav class="filter-genres">
+            <a href="#" class="btn-genre"
+            :class="{selected: serieFilterClass[index]}"
+            v-for="(genre, index) in filteredSerieGenreList"
+            @click.prevent="toggleGenre(genre.id, 'serie', index)"
+          >
+            {{ genre.name }}
+          </a>
+          </nav>
+        </div>
+        <ul class="series list container">
           <li class="serie" v-for="serie in series"
               v-show="hasGenresSelected(serie.genre_ids, 'serie')"
           >

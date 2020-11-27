@@ -12,6 +12,11 @@ body {
 }
 
 /* UTILITY */
+.container {
+  margin: 0 auto;
+  width: 90%;
+}
+
 .list {
   list-style: none;
 }
@@ -30,19 +35,10 @@ body {
 
 h2 {
   color: #f9f9f9;
+  font-size: 3rem;
   text-align: center;
   line-height: 2em;
 }
-
-/* h2::after {
-  content: '';
-  display: block;
-  margin: 0 auto;
-  width: 60%;
-  height: 3px;
-  border-radius: 3px;
-  background-color: #f9f9f9;
-} */
 
 .mb10 {
   margin-bottom: 10px;
@@ -63,7 +59,7 @@ h2 {
   flex-direction: column;
   margin: 0 auto;
   height: 100%;
-  background: linear-gradient(180deg, rgba(9, 32, 63, .95) 75%, rgba(83, 120, 149, .95) 100%);
+  background: linear-gradient(180deg, rgba(9, 32, 63, .9) 75%, rgba(83, 120, 149, .9) 100%);
 }
 /* HEADER - Search bar section */
 header.search-bar {
@@ -72,20 +68,26 @@ header.search-bar {
   align-items: center;
   position: absolute;
   padding: 0 75px;
-  min-height: 75px;
+  height: 75px;
   width: 100%;
-  background-color: rgba(249, 249, 249, .4);
+  background-color: rgba(249, 249, 249, .8);
   transition: .2s;
   box-shadow: 0 0 4px rgba(0, 0, 0, .6);
   z-index: 1;
 }
 
 header.search-bar:hover {
-  background-color: rgba(249, 249, 249, .7);
+  background-color: rgba(249, 249, 249, 1);
 }
 
 .logo {
   color: #1d3559;
+  height: 100%;
+}
+
+.logo img {
+  display: block;
+  max-height: 100%;
 }
 
 .search select {
@@ -97,7 +99,9 @@ header.search-bar:hover {
   border-top-right-radius: 10px;
   color: #09203f;
   background-color: rgba(255, 255, 255, .6);
+  box-shadow: 0 0 1px #09203f;
   appearance: none;
+  transition: .2s;
 }
 
 .search select option {
@@ -113,10 +117,18 @@ header.search-bar:hover {
   border-radius: 15px;
   color: #09203f;
   background-color: rgba(255, 255, 255, .6);
+  box-shadow: 0 0 1px #09203f;
+  transition: .2s;
 }
 
 .search-input::placeholder {
   color: #09203f;
+}
+.search select:focus,
+.search select:hover,
+.search-input:focus,
+.search-input:hover {
+  box-shadow: 0 0 6px #09203f;
 }
 
 /* MAIN CONTENT - show search results */
@@ -126,7 +138,24 @@ main.show-results {
   overflow-y: auto;
 }
 
+.show-results > div:first-child::after {
+  display: block;
+  content: '';
+  margin: 50px auto 0;
+  width: 60%;
+  height: 3px;
+  background-color: #f9f9f9;
+  border-radius: 3px;
+}
+
 /* Movies & Series */
+.category {
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .movies-section,
 .series-section {
   padding: 25px 50px;
@@ -140,48 +169,17 @@ main.show-results {
   flex-wrap: wrap;
 }
 
-nav.filter-genres {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: 0 auto 10px;
-  padding: 10px;
-  max-width: 600px;
-  min-height: 50px;
-  border-radius: 3px;
-  background-color: #f9f9f9;
-  transition: .2s;
-}
-
-a.btn-genre {
-  padding: 5px;
-  margin: 5px 10px;
-  border: 1px solid;
-  text-decoration: none;
-}
-
-a.btn-genre.selected {
-  color: red;
-}
-
 .movie,
 .serie {
   position: relative;
   margin: 20px 20px;
   padding: 20px;
   max-width: 220px;
-  background-color: rgba(249, 249, 249, .8);
+  background-color: rgba(249, 249, 249, .6);
   border-radius: 15px;
   cursor: pointer;
   transition: .3s;
   overflow: hidden;
-}
-
-
-.poster {
-  margin: 0 auto;
-  min-height: 320px;
 }
 
 .movie:hover,
@@ -189,6 +187,42 @@ a.btn-genre.selected {
   filter: drop-shadow(3px 3px 4px #102036);
   background-color: rgba(249, 249, 249, 1);
   transform: scale(1.1);
+}
+
+nav.filter-genres {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 15px;
+  max-width: 600px;
+  min-height: 50px;
+  border-radius: 25px;
+  transition: .2s;
+}
+
+a.btn-genre {
+  color: rgba(9, 32, 63, .5);
+  padding: 8px 12px;
+  margin: 5px 10px;
+  text-decoration: none;
+  border-radius: 15px;
+  background-color: rgb(249, 249, 249, .4);
+  box-shadow: 4px 4px 4px rgba(9, 32, 63, 1);
+  transition: .2s;
+  cursor: default;
+}
+
+/* a.btn-genre:hover, */
+a.btn-genre.selected {
+  color: #09203f;
+  background-color: rgb(249, 249, 249, 1);
+  box-shadow: inset 4px 4px 4px rgba(9, 32, 63, .65);
+}
+
+.poster {
+  margin: 0 auto;
+  min-height: 320px;
 }
 
 .movie:hover .description,
@@ -207,6 +241,7 @@ a.btn-genre.selected {
   width: 100%;
   height: 100%;
   font-size: .85rem;
+  line-height: 1.3rem;
   background-color: rgba(0,0,0,.9);
   border-radius: 25px;
   transition: .3s;
@@ -222,7 +257,7 @@ a.btn-genre.selected {
   display: block;
   height: 25px;
   content: 'Click to read more...';
-  color: rgba(249, 249, 249, .4);
+  color: rgba(249, 249, 249, 1);
 }
 
 /* FOOTER - Filters */
@@ -281,7 +316,7 @@ footer.filters:hover {
 .img-wrapper img {
   display: inline-block;
   max-height: 100%;
-  object-fit: cover;
+  /* object-fit: cover; */
 }
 
 .description-wrapper {
