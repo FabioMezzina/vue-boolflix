@@ -22,7 +22,9 @@
         LOGO
       </div>
       <div class="search">
-        <select name="languages" id="languages" v-model="searchLanguage">
+        <select name="languages" id="languages" v-model="searchLanguage"
+            @change="changeGenresLanguage"
+        >
           <option value="it-IT">Italiano</option>
           <option value="en-EN">English</option>
           <option value="es-ES">Español</option>

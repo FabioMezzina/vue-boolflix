@@ -142,6 +142,13 @@ const app = new Vue({
           });
     },
     /**
+     * Change the language of the genres displayed for a new search
+     */
+    changeGenresLanguage() {
+      this.getMovieGenres();
+      this.getSerieGenres();
+    },
+    /**
      * Filter the global genre list based on the movie/serie list searched
      * @param {object} list 
      * @param {string} type 
