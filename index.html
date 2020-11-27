@@ -41,17 +41,19 @@
     <main class="show-results">
       <!-- Movies -->
       <div class="movies-section" v-show="movies.length > 0">
-        <h2 class="mb20">- Movies -</h2>
+        <h2 class="mb10">- Movies -</h2>
+        <nav class="filter-genres">
+          <a href="#" class="btn-genre"
+            v-for="genre in filteredMovieGenreList"
+          >
+            {{ genre.name }}
+          </a>
+        </nav>
         <ul class="movies list">
           <li class="movie" v-for="movie in movies">
             <div class="poster">
               <img :src="setPosterPath(movie.poster_path)"
                   :alt="movie.title"
-                  v-if="movie.poster_path"
-              >
-              <img src="https://www.altavod.com/assets/images/poster-placeholder.png"
-                  alt="poster not found"
-                  v-else
               >
             </div>
             <p class="mb10">{{ movie.title }}</p>
@@ -79,18 +81,20 @@
       </div>
 
       <!-- Series -->
-      <div class="series-section mb75" v-show="series.length > 0">
-        <h2 class="mb20">- TV Series -</h2>
+      <div class="series-section" v-show="series.length > 0">
+        <h2 class="mb10">- TV Series -</h2>
+        <nav class="filter-genres">
+          <a href="#" class="btn-genre"
+          v-for="genre in filteredSerieGenreList"
+        >
+          {{ genre.name }}
+        </a>
+        </nav>
         <ul class="series list">
           <li class="serie" v-for="serie in series">
             <div class="poster">
               <img :src="setPosterPath(serie.poster_path)"
                   :alt="serie.title"
-                  v-if="serie.poster_path"
-              >
-              <img src="https://www.altavod.com/assets/images/poster-placeholder.png"
-                  alt="poster not found"
-                  v-else
               >
             </div>
             <p class="mb10">{{ serie.name }}</p>

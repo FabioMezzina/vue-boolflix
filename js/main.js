@@ -13,7 +13,16 @@ const app = new Vue({
       vote_average: 0,
       genre_ids: [],
     },
+    movieGenreList: [],
+    filteredMovieGenreList: [],
+    serieGenreList: [],
+    filteredSerieGenreList: [],
   }, // <- End Data
+  created() {
+    // Get movies and series genres lists
+    this.getMovieGenres();
+    this.getSerieGenres();
+  },
   methods: {
     /**
      * Start search and clear input search bar
@@ -36,6 +45,7 @@ const app = new Vue({
               })
             .then(result => {
               this.movies = [...result.data.results];
+              this.filterGenreList(this.movies, 'movie');
             })
             .catch(error => {
               console.log(error);
@@ -58,6 +68,7 @@ const app = new Vue({
               })
             .then(result => {
               this.series = [...result.data.results];
+              this.filterGenreList(this.series, 'serie');
             })
             .catch(error => {
               console.log(error);
@@ -78,7 +89,7 @@ const app = new Vue({
      * @param {string} path 
      */
     setPosterPath(path) {
-      return `https://image.tmdb.org/t/p/w342/${path}`;
+      return path ? `https://image.tmdb.org/t/p/w342/${path}` : "https://www.altavod.com/assets/images/poster-placeholder.png"
     },
     showOverlay(film) {
       this.overlayStatus = true;
@@ -90,5 +101,68 @@ const app = new Vue({
         genre_ids: [...film.genre_ids],
       }
     },
+    /**
+     * Get the movies genres list
+     */
+    getMovieGenres() {
+      axios.get('https://api.themoviedb.org/3/genre/movie/list', {
+              params: {
+                api_key: 'c7984b175d921dd492707f69a01be0da',
+                language: this.searchLanguage,
+              }
+          })
+          .then(result => {
+            this.movieGenreList = [...result.data.genres]
+          })
+          .catch(error => {
+            console.log(error);
+          });
+    },
+    /**
+     * Get the tv series genres list
+     */
+    getSerieGenres() {
+      axios.get('https://api.themoviedb.org/3/genre/tv/list', {
+              params: {
+                api_key: 'c7984b175d921dd492707f69a01be0da',
+                language: this.searchLanguage,
+              }
+          })
+          .then(result => {
+            this.serieGenreList = [...result.data.genres]
+          })
+          .catch(error => {
+            console.log(error);
+          });
+    },
+    /**
+     * Filter the global genre list based on the movie/serie list searched
+     * @param {object} list 
+     * @param {string} type 
+     */
+    filterGenreList(list, type) {
+      let id = null;
+      if (type === 'movie') {
+        this.filteredMovieGenreList = [];
+        this.movieGenreList.forEach(genre => {
+          id = genre.id;
+          list.forEach(movie => {
+            if(movie.genre_ids.includes(id) && !this.filteredMovieGenreList.includes(genre)) {
+              this.filteredMovieGenreList.push(genre);
+            }
+          })
+        });
+      } else {
+        this.filteredSerieGenreList = [];
+        this.serieGenreList.forEach(genre => {
+          id = genre.id;
+          list.forEach(serie => {
+            if(serie.genre_ids.includes(id) && !this.filteredSerieGenreList.includes(genre)) {
+              this.filteredSerieGenreList.push(genre);
+            }
+          });
+        });
+      }
+    }
   } // <- End Methods
 });
