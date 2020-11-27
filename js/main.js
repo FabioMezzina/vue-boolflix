@@ -170,6 +170,14 @@ const app = new Vue({
         });
       }
     },
+    /**
+     * If the clicked genre has not yet been selected, the function pushes it into the chosen genres list.
+     * In addition, toggle the 'selected' class for the clicked button
+     * Otherwise the genre is removed, as well as the 'selected' class.
+     * @param {number} id 
+     * @param {string} type 
+     * @param {number} i 
+     */
     toggleGenre(id, type, i) {
       console.log(id);
       if (type === 'movie') {
