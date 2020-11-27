@@ -61,6 +61,7 @@ h2 {
   height: 100%;
   background: linear-gradient(180deg, rgba(9, 32, 63, .9) 75%, rgba(83, 120, 149, .9) 100%);
 }
+
 /* HEADER - Search bar section */
 header.search-bar {
   display: flex;
@@ -316,7 +317,6 @@ footer.filters:hover {
 .img-wrapper img {
   display: inline-block;
   max-height: 100%;
-  /* object-fit: cover; */
 }
 
 .description-wrapper {
