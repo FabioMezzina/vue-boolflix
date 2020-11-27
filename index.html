@@ -43,14 +43,18 @@
       <div class="movies-section" v-show="movies.length > 0">
         <h2 class="mb10">- Movies -</h2>
         <nav class="filter-genres">
-          <a href="#" class="btn-genre"
-            v-for="genre in filteredMovieGenreList"
+          <a href="#"  class="btn-genre"
+            :class="{selected: movieFilterClass[index]}"
+            v-for="(genre, index) in filteredMovieGenreList"
+            @click.prevent="toggleGenre(genre.id, 'movie', index)"
           >
             {{ genre.name }}
           </a>
         </nav>
         <ul class="movies list">
-          <li class="movie" v-for="movie in movies">
+          <li class="movie" v-for="movie in movies"
+          v-show="hasGenresSelected(movie.genre_ids, 'movie')"
+          >
             <div class="poster">
               <img :src="setPosterPath(movie.poster_path)"
                   :alt="movie.title"
@@ -85,13 +89,17 @@
         <h2 class="mb10">- TV Series -</h2>
         <nav class="filter-genres">
           <a href="#" class="btn-genre"
-          v-for="genre in filteredSerieGenreList"
+          :class="{selected: serieFilterClass[index]}"
+          v-for="(genre, index) in filteredSerieGenreList"
+          @click.prevent="toggleGenre(genre.id, 'serie', index)"
         >
           {{ genre.name }}
         </a>
         </nav>
         <ul class="series list">
-          <li class="serie" v-for="serie in series">
+          <li class="serie" v-for="serie in series"
+              v-show="hasGenresSelected(serie.genre_ids, 'serie')"
+          >
             <div class="poster">
               <img :src="setPosterPath(serie.poster_path)"
                   :alt="serie.title"

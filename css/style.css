@@ -161,6 +161,10 @@ a.btn-genre {
   text-decoration: none;
 }
 
+a.btn-genre.selected {
+  color: red;
+}
+
 .movie,
 .serie {
   position: relative;

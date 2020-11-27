@@ -13,10 +13,16 @@ const app = new Vue({
       vote_average: 0,
       genre_ids: [],
     },
+    // arrays for toggling 'selected' class on click for filters
+    movieFilterClass: [],
+    serieFilterClass: [],
+    // utility variables for genre filters
     movieGenreList: [],
     filteredMovieGenreList: [],
+    movieGenresChosen: [],
     serieGenreList: [],
     filteredSerieGenreList: [],
+    serieGenresChosen: [],
   }, // <- End Data
   created() {
     // Get movies and series genres lists
@@ -163,6 +169,57 @@ const app = new Vue({
           });
         });
       }
+    },
+    toggleGenre(id, type, i) {
+      console.log(id);
+      if (type === 'movie') {
+        if (this.movieGenresChosen.includes(id)) {
+          const position = this.movieGenresChosen.indexOf(id);
+          this.movieGenresChosen.splice(position, 1);
+          this.movieFilterClass[i] = '';
+        } else {
+          this.movieGenresChosen.push(id);
+          this.movieFilterClass[i] = 'selected';
+        }
+      } else {
+        if (this.serieGenresChosen.includes(id)) {
+          const position = this.serieGenresChosen.indexOf(id);
+          this.serieGenresChosen.splice(position, 1);
+          this.serieFilterClass[i] = '';
+        } else {
+          this.serieGenresChosen.push(id);
+          this.serieFilterClass[i] = 'selected';
+        }
+      }
+    },
+    /**
+     * Check if the genres in a movie/serie are included in the selected filters
+     * Return true if one or more genres are found, false otherwise
+     * @param {object} genreList 
+     * @param {string} type 
+     */
+    hasGenresSelected(genreList, type) {
+      let show = false;
+      if (type === 'movie') {
+        if (this.movieGenresChosen.length === 0 || genreList.length === 0) {
+          show = true;
+        }
+        genreList.forEach(genre => {
+          if (this.movieGenresChosen.includes(genre)) {
+            show = true;
+          }
+        });
+      } else {
+        if (this.serieGenresChosen.length === 0 || genreList.length === 0) {
+          show = true;
+        }
+        genreList.forEach(genre => {
+          if (this.serieGenresChosen.includes(genre)) {
+            show = true;
+          }
+        });
+      }
+      return show;
     }
   } // <- End Methods
 });
