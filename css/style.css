@@ -262,7 +262,7 @@ a.btn-genre.selected {
 }
 
 /* FOOTER - Filters */
-footer.filters {
+/* footer.filters {
   position: absolute;
   bottom: -45px;
   left: 50%;
@@ -281,7 +281,7 @@ footer.filters {
 footer.filters:hover {
   bottom: 0;
   background-color: rgba(249, 249, 249, .8);
-}
+} */
 
 /* Overlay */
 .description-overlay {
